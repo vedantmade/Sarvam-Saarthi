@@ -1,0 +1,5 @@
+# Optional: semantic search over the CGWB report (local / full deployments).
+# Too large for Vercel (torch + ~1.3 GB model); without it, answers use the SQL data only.
+-r requirements.txt
+chromadb>=1.0
+sentence-transformers>=3.0

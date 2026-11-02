@@ -1,0 +1,10 @@
+FORM 16 - PART B (Summary)  Assessment Year 2026-27
+Employee: R. Krishnan   PAN: ABCPK****K   Employer: XYZ Textiles Pvt Ltd, Coimbatore
+Gross Salary: Rs 7,20,000
+Less: Standard Deduction u/s 16(ia): Rs 75,000
+Income chargeable under head Salaries: Rs 6,45,000
+Tax Regime: New Regime (Section 115BAC)
+Total Taxable Income: Rs 6,45,000
+Tax on total income: Rs 0 (after rebate u/s 87A)
+Tax Deducted at Source (TDS): Rs 12,000
+Refund due: Rs 12,000 (claim by filing ITR-1 before 31-07-2026)

@@ -1,0 +1,7 @@
+.env
+.venv
+venv
+data/chroma_db
+data/groundwater.db
+__pycache__
+requirements-rag.txt

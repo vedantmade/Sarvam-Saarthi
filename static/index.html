@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sarthi · Rural Voice Assistant for India</title>
+  <meta name="description" content="Voice assistant for rural India: farming, government schemes, groundwater and documents, in 22 Indian languages. Powered by Sarvam AI." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0a84c6" />
+  <link rel="icon" href="/static/icon-192.png" />
+  <link rel="apple-touch-icon" href="/static/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo" src="/static/icon-192.png" alt="" />
+      <div>
+        <h1>Sarthi</h1>
+        <p class="tag">Rural voice assistant: farming, schemes, water &amp; documents, in 22 Indian languages</p>
+      </div>
+    </div>
+    <button id="installBtn" class="install hidden">📲 Install app</button>
+    <label class="lang">
+      <span>Language / भाषा</span>
+      <select id="language"></select>
+    </label>
+  </header>
+
+  <div id="keyWarning" class="warning hidden">
+    Your Sarvam API key is not set. Open the <code>.env</code> file, paste your key after
+    <code>SARVAM_API_KEY=</code>, and restart the server.
+  </div>
+
+  <main>
+    <!-- Left: voice agent + guidance -->
+    <aside class="side">
+      <section class="card agent">
+        <button type="button" id="agentBtn" class="orb" aria-label="Start voice agent">
+          <span class="orb-icon">🎙️</span>
+        </button>
+        <div class="agent-label" id="agentLabel">Tap to talk</div>
+        <div id="micStatus" class="status">Ask about farming, schemes, water or documents. Speak naturally in your language.</div>
+        <label class="check"><input type="checkbox" id="autoSpeak" checked /> Read answers aloud</label>
+      </section>
+
+      <section class="card">
+        <h2>Try asking</h2>
+        <div class="chips" id="chips">
+          <span class="chip-group">🌾 Farming</span>
+          <button class="chip">What should I sow in the rabi season?</button>
+          <button class="chip">गेहूं में कीड़े लगें तो क्या करें?</button>
+          <span class="chip-group">🏛️ Schemes</span>
+          <button class="chip">PM-KISAN योजना के लिए आवेदन कैसे करें?</button>
+          <button class="chip">பயிர் காப்பீடு எப்படி பெறுவது?</button>
+          <button class="chip">How do I get a Kisan Credit Card?</button>
+          <span class="chip-group">💧 Groundwater</span>
+          <button class="chip">Which states are over-exploiting groundwater?</button>
+          <button class="chip">महाराष्ट्र में भूजल की स्थिति क्या है?</button>
+          <span class="chip-group">📄 Documents</span>
+          <button class="chip">How do I add a member to my ration card?</button>
+        </div>
+      </section>
+
+      <section class="card legend">
+        <h2>💧 Groundwater status colours</h2>
+        <ul>
+          <li><span class="dot safe"></span>Safe <em>below 70%</em></li>
+          <li><span class="dot semi"></span>Semi-critical <em>70–90%</em></li>
+          <li><span class="dot critical"></span>Critical <em>90–100%</em></li>
+          <li><span class="dot over"></span>Over-exploited <em>above 100%</em></li>
+        </ul>
+        <p class="muted">Share of available groundwater being extracted. Data: CGWB, state-wise 2020.</p>
+      </section>
+
+      <details class="card more">
+        <summary>📄 Topic &amp; upload a document</summary>
+        <label>Topic
+          <select id="docType"></select>
+        </label>
+        <div id="docTools">
+          <input type="file" id="fileInput" accept=".pdf,.txt" />
+          <textarea id="pasteText" rows="3" placeholder="…or paste text from a form"></textarea>
+          <button id="uploadBtn" class="ghost">Use this document</button>
+          <button id="explainBtn" class="ghost" disabled>📄 Explain my document</button>
+        </div>
+        <div id="docStatus" class="muted"></div>
+      </details>
+    </aside>
+
+    <!-- Right: conversation -->
+    <section class="card chat">
+      <div id="messages">
+        <div class="msg bot welcome">
+          <strong>Namaste! 🙏 I'm Sarthi, your village helper.</strong><br />
+          Ask me about 🌾 crops and farming, 🏛️ government schemes like PM-KISAN or crop insurance,
+          💧 groundwater in your state, or 📄 any document you don't understand.
+          Tap the 🎙️ button and just speak in your language, or type below.
+        </div>
+      </div>
+      <form id="chatForm">
+        <button type="button" id="micBtn" title="Hold a single question">🎤</button>
+        <input id="textInput" placeholder="Type your question…" autocomplete="off" />
+        <button type="submit" class="send">Ask</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    Powered by <strong>Sarvam AI</strong>: Saaras (speech-to-text) · Sarvam 105B (reasoning &amp; answers) · Bulbul (voice).
+    General guidance only. Confirm with your gram panchayat, KVK, CSC centre or the official portal. Never share OTPs.
+  </footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
