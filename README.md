@@ -148,35 +148,7 @@ SARTHI-AI/
 └── LICENSE
 ```
 
-## 6. Frontend
 
-The frontend is a single page in `static/`, served by FastAPI. It has no framework and no build step.
-
-### Screens and components
-
-| Component | Element | Purpose |
-|---|---|---|
-| Header | `#language`, `#installBtn` | Pick from 23 languages; install the app when the browser allows it |
-| Voice orb | `#agentBtn`, `#agentLabel`, `#micStatus` | Start/stop the hands-free agent; shows *Listening… / Understanding… / Speaking…* |
-| Try asking | `#chips .chip` | One-tap examples grouped by Farming, Schemes, Groundwater and Documents (English, Hindi, Tamil) |
-| Legend | `.legend` | Explains the safe / semi-critical / critical / over-exploited colours |
-| Topic & upload | `#docType`, `#docTools` | Pick a topic (Rural Assistant is the default and routes automatically) and upload a PDF or text file |
-| Chat | `#messages`, `#chatForm`, `#micBtn` | Conversation, typed questions, and a press-to-talk mic |
-
-### Key behaviour in `static/app.js`
-
-- **Audio capture:** `MediaRecorder` audio is resampled to 16 kHz mono 16-bit WAV (`toWav()`), the format Sarvam speech-to-text accepts most reliably.
-- **Voice agent:** `agentListen()` watches the mic level with an `AnalyserNode`. About 1.2 s of silence ends a turn, and turns are capped at 25 s. Only one listener can run at a time.
-- **Barge-in:** while an answer is playing, a loud mic level stops playback and the agent listens again.
-- **Single playback:** `speak()` takes a token, so any newer answer, replay, question or mic press cancels older audio, including audio still being fetched. Only the newest question's answer is spoken.
-- **Languages without voice:** for the 12 languages Bulbul doesn't support, the answer is shown as text with a short notice.
-- **Skill badge:** each answer shows which skill responded (🌾 Rural assistant or 💧 Groundwater data).
-- **State cards:** values like `164.42%` are coloured by status (`statusClass()`).
-- **PWA:** registers `/sw.js` and shows **📲 Install app** when the browser fires `beforeinstallprompt`.
-
-### Styling
-
-`static/style.css` uses CSS variables for a water-blue theme, follows the device's dark mode (`prefers-color-scheme`), and switches to a single column below 860 px wide.
 
 ## 7. Backend
 
